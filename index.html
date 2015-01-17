@@ -1,0 +1,621 @@
+<html>
+<head>
+    <style>
+        /**************app*******************/
+        .testapp{
+        }
+
+        .app-start{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            -webkit-perspective: 3000;
+        }
+
+        #desktop button{
+            width: 100px;
+            height: 40px;
+            color: white;
+            background-color: #000000;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            cursor: pointer;
+
+            z-index: 99;
+        }
+
+        #desktop #card{
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+            -webkit-transition: all 0.8s;
+        }
+
+        #desktop .flipped {
+            -webkit-transform: rotateY(180deg) scale(1);
+        }
+
+        #card div{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+        }
+
+        #card .front {
+            /*background: red;*/
+        }
+        #card .back {
+            -webkit-transform: rotateY(180deg);
+        }
+
+
+        #desktop .main{
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            height: auto;
+            width: 50%;
+            -webkit-transition: all 0.4s;
+
+            -webkit-transform: translateX(-50%);
+        }
+
+        #desktop input{
+            width: 100%;
+            height: 40px;
+            font-size: 2em;
+
+            border: 1px solid #969696;
+            outline: none;
+        }
+
+        #desktop .select{
+            /*border: solid 1px red;*/
+            width: 100%;
+            height: auto;
+        }
+
+        #desktop .select ul{
+            margin: 4px 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #desktop .select li{
+            padding: 0% 2%;
+            position: relative;
+            cursor: pointer;
+            height: 40px;
+            width: 96%;
+            margin: 2px 0px;
+            background-color: #004e9d;
+            opacity: 1;
+            color: white;
+            line-height: 40px;
+        }
+
+
+
+        .appList div{
+            position: relative;
+            box-sizing: border-box;
+            float: left;
+            width: 12.5%;
+            padding-top: 12.5%;
+            background-color: #004050;
+            cursor: hand;
+            color: white;
+            overflow: hidden;
+        }
+
+        .appList div div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            border: solid 1px white;
+        }
+
+        .app-start h2{
+            cursor: pointer;
+            margin-left: 7px;
+        }
+
+        .lock{
+            position: fixed;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+
+        /***************/
+        .alter-view{
+
+        }
+
+        /*****************/
+
+        .settingOption{
+            /*overflow: hidden;*/
+            width: 100%;
+            height: auto;
+            background-color: #000000;
+        }
+
+        .settingOption ul{
+            list-style: none;
+        }
+
+        .settingOption ul li{
+            width: 100%;
+            height: 48px;
+            background-color: white;
+            margin: 1px 0px;
+        }
+
+        .set{
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            top: 52px;
+            left: 50%;
+            background-color: #000000;
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+
+            -webkit-transition: all 0.4s;
+            -webkit-transform: translateX(-50%) translateY(-50%) scale(0.1);
+            -webkit-box-shadow: 1px 1px 8px rgba(120, 120, 120, 1);
+        }
+
+        .set:before{
+            display: block;
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            border-radius: 2px;
+
+            -webkit-transform: rotate(45deg) translateX(-50%);
+        }
+
+        .setShow{
+            visibility: visible;
+            opacity: 1;
+            /*-webkit-transform: translateX(-50%) scale(1);*/
+            -webkit-transform: translateY(0%) translateX(-50%) scale(1);
+            /*-webkit-animation: setShowAnimation 0.4s;*/
+        }
+        
+        @-webkit-keyframes setShowAnimation {
+            0% {  -webkit-transform: translateY(-50%) translateX(-50%) scale(0.2); }
+            80% {  -webkit-transform: translateY(-20%) translateX(-50%) scale(1.1); }
+            100% {  -webkit-transform: translateY(0%) translateX(-50%) scale(1); }
+        }
+
+    </style>
+    <link rel="stylesheet" href="app/color/color.css">
+    <link rel="stylesheet" href="app/iosSimulator/iosSimulator.css">
+    <link rel="stylesheet" href="app/calculator/calculator.css">
+    <link rel="stylesheet" href="system/UI.css">
+</head>
+<body>
+
+<div class="app app-start" id="desktop" data-app="apps">
+    <div id="card">
+        <div class="front">
+            <div class="main">
+                <input type="text" tabindex="1" placeholder="Search Here">
+
+                <div class="select">
+                    <ul class="iiii">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <h2 data-app="setting">setting</h2>
+            <h2 data-app="test">test</h2>
+            <h2 data-app="color">color</h2>
+            <h2 data-app="iosSimulator">iosSimulator</h2>
+            <h2 data-app="calculator">calculator</h2>
+        </div>
+    </div>
+
+    <button>FFF</button>
+</div>
+
+<!--<div class="lock">-->
+    <!--<h1>Fuck off</h1>-->
+<!--</div>-->
+
+<div class="app app-setting" data-app="setting">
+    <header>
+        <h2 class="title" data-app="setting">System Setting</h2>
+        <div class="redBtn"><div class="cloes-tag" data-app="setting"></div></div>
+    </header>
+    <div class="set" data-app="setting">
+
+    </div>
+
+    <div class="settingOption">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<div id="taskBar">
+    <button class="startBtn">Start</button>
+
+    <p id="time"></p>
+</div>
+
+<div class="alertView">
+
+</div>
+
+<!--*********************************************************app area****************-->
+
+<!--TEMPLE:-->
+    <!--<div class="app" data-app="[appName]">-->
+        <!--<header>-->
+            <!--<h2 class="title">[appName]</h2>-->
+            <!--<div class="redBtn"><div class="cloes-tag" data-app="[appName]"></div></div>-->
+        <!--</header>-->
+    <!--</div>-->
+
+<div class="app testapp" data-app="test">
+    <header>
+        <h2 class="title">Title</h2>
+        <div class="redBtn"><div class="cloes-tag" data-app="test"></div></div>
+    </header>
+    <!--<div class="set" data-app="setting">-->
+</div>
+
+<div class="app app-color" data-app="color">
+    <header>
+        <h2 class="title">App-Color</h2>
+        <div class="redBtn"><div class="cloes-tag" data-app="color"></div></div>
+    </header>
+
+    <input type="text" id="red" placeholder="R" maxlength="3" tabindex="1">
+    <input type="text" id="green" placeholder="G" maxlength="3" tabindex="2">
+    <input type="text" id="blue" placeholder="B" maxlength="3" tabindex="3">
+    <button class="color-get">GET</button>
+    <input placeholder="HEX" id="hexval" tabindex="-1">
+</div>
+
+<div class="app app-iosSimulator" data-app="iosSimulator">
+    <header>
+        <h2 class="title">iosSimulator</h2>
+        <div class="redBtn"><div class="cloes-tag" data-app="iosSimulator"></div></div>
+    </header>
+
+    <div class="window">
+        <div class="untouchable-bg"></div>
+
+        <div class="hamburg"></div>
+        <div class="person-bg">
+            <img class="img-bg" src="1111.png">
+        </div>
+
+        <div class="add-btn"></div>
+
+        <div class="setting-box"></div>
+
+        <div class="table-place">
+            <div class="table-header">
+                <div class="tabel-close-btn">close</div>
+            </div>
+
+            <div class="table-content">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="person-other">
+            <div class="person-other-header">
+                <div class="person-other-back">back</div>
+            </div>
+            <!--<div class="person-other-close"></div>-->
+        </div>
+
+        <div class="alter-view">
+
+        </div>
+    </div>
+</div>
+
+<div class="app" data-app="calculator">
+    <header>
+        <h2 class="title">calculator</h2>
+        <div class="redBtn"><div class="cloes-tag" data-app="calculator"></div></div>
+    </header>
+    <div class="c-window">
+        <input type="text" readonly>
+        <button data-number="C">C</button>
+        <button data-number="+/-">+/-</button>
+        <button data-number="%">%</button>
+        <button data-number="/">/</button>
+
+        <button data-number="7">7</button>
+        <button data-number="8">8</button>
+        <button data-number="9">9</button>
+        <button data-number="*">*</button>
+
+        <button data-number="6">6</button>
+        <button data-number="5">5</button>
+        <button data-number="4">4</button>
+        <button data-number="-">-</button>
+
+        <button data-number="3">3</button>
+        <button data-number="2">2</button>
+        <button data-number="1">1</button>
+        <button data-number="0">0</button>
+
+        <button data-number="+">+</button>
+        <button data-number=".">.</button>
+        <button data-number="=">=</button>
+    </div>
+</div>
+
+</body>
+
+<script>
+    var $ = function( obj ){
+        return document.querySelector( obj );
+    }
+
+    var $n = function( obj ){
+        return [].slice.call(document.querySelectorAll( obj ));
+    }
+
+    var desktop = {
+        app: $('#desktop'),
+        appStart: function( appName, code ){
+            var appName = appName.toUpperCase();
+            if( this.app.classList.contains( 'app-start' ) ){
+                this.app.classList.remove( 'app-start' );
+            }
+
+            $n('.app').forEach(function(obj, i){
+               var app = obj.getAttribute('data-app').toUpperCase();
+               if( app == appName ){
+                   obj.classList.add('app-start');
+               }
+            });
+
+            code();
+        },
+        appEnd: function( appName, code ){
+            var appName = appName.toUpperCase();
+            if( !this.app.classList.contains( 'app-start' ) ){
+                this.app.classList.add( 'app-start' );
+            }
+
+            $n('.app').forEach(function(obj, i){
+                var app = obj.getAttribute('data-app').toUpperCase();
+                if( app == appName ){
+                    obj.classList.remove('app-start');
+                }
+            });
+
+            code();
+        }
+    }
+
+    var app = {
+        showSet: function(appName, code){
+            $n('.set').forEach(function(obj, i){
+                var app = obj.getAttribute('data-app');
+                if( appName == app ){
+                    obj.classList.toggle('setShow');
+                }
+            })
+
+            code();
+        }
+    }
+
+    $n('.app-start h2').forEach(function(obj, i){
+        obj.addEventListener('click', function(){
+            var appName = this.getAttribute('data-app');
+            desktop.appStart( appName, function(){
+                console.log(appName+' start');
+            } );
+        }, false);
+    });
+
+    $n('.cloes-tag').forEach(function(obj, i){
+       obj.addEventListener('click', function(){
+           var appName = this.getAttribute('data-app');
+           desktop.appEnd(appName, function(){
+               console.log(appName+' end');
+           })
+       }, false);
+    });
+
+//    $n('.app .title').forEach(function(obj, i){
+//        obj.addEventListener('click', function(){
+//            var appName = this.getAttribute('data-app');
+//            app.showSet(appName, function(){
+//
+//            });
+//        }, false);
+//    })
+
+    setInterval(function(){
+        var time = new Date();
+        $('#time').innerText = time;
+    }, 1000)
+
+    var tableView = function( o ){
+
+        var _ = this;
+
+        _.o = o || {}
+
+    }
+
+    $('.app-start button').onclick = function(){
+        $('#card').classList.toggle('flipped');
+    }
+
+    var dict = {
+        keywords: ['CALCULATOR', 'IOSSIMULATOR', 'COLOR', 'TEST', 'SETTING'],
+        addKeywords: function( word ){
+            dict.keywords.push( word );
+        },
+        getwords: function( word ){
+            if(word.length === 0) return false;
+
+            var word = word.toUpperCase();
+            var T = true, keys = [];
+
+            for( var key in dict.keywords){
+                var keyword = dict.keywords[key].toUpperCase();
+                for(var i in word){
+                    var letter = word[i];
+                    if( keyword.indexOf( letter ) === -1 ){
+                        T = false;
+                    }
+                }
+
+                if( T === true ){
+                    keys.push( dict.keywords[key] );
+                }
+
+                T = true;
+            }
+
+            return keys;
+        }
+    }
+
+    var dictSelect = {
+        activition: false,
+        max: 0,
+        current: 0,
+        onSelect: function(){
+            [].slice.call(document.querySelectorAll( '.iiii li' )).forEach(function(li, i){
+                console.log('change color?');
+                if(i === dictSelect.current - 1){
+                    li.setAttribute('data-select', 'YES');
+                    li.style.backgroundColor = 'orangered';
+                }else{
+                    li.setAttribute('data-select', 'NO');
+                    li.style.backgroundColor = '#004e9d';
+                }
+            })
+        },
+        insert: function( keys ){
+            var str = '';
+            for(var key in keys){
+                str += '<li data-app='+keys[key]+'>'+keys[key]+'</li>';
+            }
+            if( keys.length === 0 ){
+                str = '<li>NO RESULT</li>';
+            }
+            $('.iiii').innerHTML = str;
+            dictSelect.max = keys.length;
+        },
+        up: function(){
+            console.log('up');
+            if( this.current == 0 ){
+                this.current = this.max;
+            }else{
+                this.current -= 1;
+            }
+
+            this.onSelect();
+        },
+        down: function(){
+            console.log('down');
+            if( this.current == this.max ){
+                this.current = 1;
+            }else{
+                this.current += 1;
+            }
+
+            this.onSelect();
+        },
+        didSelect: function(){
+            [].slice.call(document.querySelectorAll( '.iiii li' )).forEach(function(li, i){
+                var isSelect = li.getAttribute('data-select');
+                if( isSelect === 'YES' ){
+                    var appName = li.getAttribute('data-app');
+                    desktop.appStart( appName, function(){
+                        console.log(appName+' start');
+                    } );
+                }
+            });
+        }
+    }
+    
+    $('#desktop input').oninput = function(){
+        var w = $('input').value;
+        console.log(w);
+        var keys = dict.getwords(w);
+
+        dictSelect.insert( keys );
+    }
+
+    document.onkeydown = function(e){
+        if( e.keyCode === 38 ){
+            if( dictSelect.activition === true ){
+                dictSelect.up();
+            }
+        }else if( e.keyCode === 40 ){
+            if( dictSelect.activition === true ){
+                dictSelect.down();
+            }
+        }else if( e.keyCode === 13 ){
+            if( dictSelect.activition === true ){
+                dictSelect.didSelect();
+            }
+        }
+    }
+
+    $('#desktop input').onfocus = function(){
+        dictSelect.activition = true;
+    }
+
+    $('#desktop input').onblur = function(){
+        dictSelect.activition = false;
+    }
+
+</script>
+<script src="app/color/color.js"></script>
+<script src="app/iosSimulator/iosSimulator.js"></script>
+<script src="app/calculator/calculator.js"></script>
+</html>
