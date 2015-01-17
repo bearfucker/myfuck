@@ -1,4 +1,4 @@
-(function(){
+(function( appName ){
     var $ = function( obj ){
         return document.querySelector(obj);
     }
@@ -36,11 +36,11 @@
         $('.table-place').classList.remove('table-place-show');
     }
 
-    $('ul').onclick = function(){
+    $('.app-iosSimulator ul').onclick = function(){
         $('.person-other').classList.add('person-other-show');
     }
 
     $('.person-other-back').onclick = function(){
         $('.person-other').classList.remove('person-other-show');
     }
-})()
+})('iosSimulator');

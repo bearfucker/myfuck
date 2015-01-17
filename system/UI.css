@@ -1,0 +1,132 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: white;
+}
+
+.redBtn{
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.cloes-tag {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 6px;
+    top: 6px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-transition: all 0.1s;
+    -ms-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.cloes-tag:hover{
+    opacity: 1;
+}
+.cloes-tag:before,
+.cloes-tag:after {
+    content: '';
+    position: absolute;
+    /*background-color: #000000;*/
+    background-color: white;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+}
+.cloes-tag:before {
+    left: 45%;
+    top: -10%;
+    width: 10%;
+    height: 120%;
+}
+.cloes-tag:after {
+    top: 45%;
+    left: -10%;
+    width: 120%;
+    height: 10%;
+}
+
+#taskBar{
+    position: fixed;
+    bottom: 0px;
+    cursor: hand;
+    width: 100%;
+    height: 48px;
+    background-color: #000000;
+    opacity: 0.8;
+    z-index: 999;
+}
+
+#taskBar .startBtn{
+    position: relative;
+    width: 80px;
+    height: 40px;
+    top: 4px;
+    left: 4px;
+    background-color: #000000;
+    opacity: 0.8;
+    color: white;
+    cursor: pointer;
+}
+
+#taskBar #time{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    line-height: 48px;
+    color: white;
+}
+
+button{
+    border: none;
+}
+
+.app{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    visibility: hidden;
+    opacity: 0;
+    background-color: white;
+    z-index: 200;
+    overflow: scroll;
+    -webkit-transition: all 0.4s;
+
+    -webkit-transform: translateX(-50%) translateY(-50%) scale(0);
+}
+
+.app-start{
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+.app header{
+    width: 100%;
+    height: 32px;
+}
+
+.app header .title{
+    text-align: center;
+    cursor: pointer;
+}
+
+#desktop{
+    background-color: white;
+}

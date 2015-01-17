@@ -148,8 +148,9 @@
     height: 80px;
     width: 96%;
     left: 2%;
+    background-color: #004e9d;
     /*border-bottom: 2px #000000 solid;*/
-    -webkit-box-shadow: 1px 1px 2px rgba(120, 120, 120, 1);
+    /*-webkit-box-shadow: 1px 1px 2px rgba(120, 120, 120, 1);*/
 }
 
 .person-other{

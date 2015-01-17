@@ -1,0 +1,27 @@
+.app-color{
+    /*background-color: #000000;*/
+}
+
+.app-color input{
+    margin: 5px;
+    border: solid 1px #000000;
+    background: transparent;
+    border-radius: 2px;
+    outline: none;
+    width: 200px;
+    height: 28px;
+    color: #000000;
+}
+
+.app-color header{
+    background-color: white;
+}
+
+.app-color button{
+    width: 100px;
+    height: 28px;
+    background-color: #000000;
+    cursor: pointer;
+    color: white;
+    border-radius: 2px;
+}
